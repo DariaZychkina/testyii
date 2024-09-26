@@ -1085,3 +1085,45 @@ Stack trace:
 REQUEST_URI=/blog/index.php?r=post/view&id=16
 HTTP_REFERER=http://localhost/blog/index.php?r=post/create
 ---
+2024/09/26 18:19:45 [error] [exception.CHttpException.403] CHttpException: Ошибка доступа. Не твоё - не трогай! in C:\Apache24\htdocs\blog\protected\controllers\PostController.php:99
+Stack trace:
+#0 [internal function]: PostController->actionUpdate('4')
+#1 C:\yii\framework\web\actions\CAction.php(114): ReflectionMethod->invokeArgs(Object(PostController), Array)
+#2 C:\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(PostController), Object(ReflectionMethod), Array)
+#3 C:\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#5 C:\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\yii\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#7 C:\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#12 C:\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('post/update')
+#13 C:\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#14 C:\Apache24\htdocs\blog\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/blog/index.php?r=post/update&id=4
+HTTP_REFERER=http://localhost/blog/index.php?r=post/view&id=4
+---
+2024/09/26 18:21:48 [error] [exception.CHttpException.403] CHttpException: Ошибка доступа. Не твоё - не трогай! in C:\Apache24\htdocs\blog\protected\controllers\PostController.php:115
+Stack trace:
+#0 [internal function]: PostController->actionDelete('4')
+#1 C:\yii\framework\web\actions\CAction.php(114): ReflectionMethod->invokeArgs(Object(PostController), Array)
+#2 C:\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(PostController), Object(ReflectionMethod), Array)
+#3 C:\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#5 C:\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\yii\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#7 C:\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\yii\framework\web\CWebApplication.php(282): CController->run('delete')
+#12 C:\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('post/delete')
+#13 C:\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#14 C:\Apache24\htdocs\blog\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/blog/index.php?r=post/delete&id=4
+HTTP_REFERER=http://localhost/blog/index.php?r=post/view&id=4
+---

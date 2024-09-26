@@ -63,8 +63,7 @@ class PostController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Post']))
-		{
+		if (isset($_POST['Post'])) {
 			$model->attributes=$_POST['Post'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -83,12 +82,11 @@ class PostController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-		if(Yii::app()->user->id == $model->author_id) {
+		if (Yii::app()->user->id == $model->author_id) {
 			// Uncomment the following line if AJAX validation is needed
 			// $this->performAjaxValidation($model);
 
-			if(isset($_POST['Post']))
-			{
+			if (isset($_POST['Post'])) {
 				$model->attributes=$_POST['Post'];
 				if($model->save())
 					$this->redirect(array('view','id'=>$model->id));
@@ -98,7 +96,7 @@ class PostController extends Controller
 				'model'=>$model,
 			));
 		} else {
-			$this->redirect(array('view','id'=>$model->id));
+			throw new CHttpException(403,'Ошибка доступа. Не твоё - не трогай!');
 		}
 	}
 
@@ -110,14 +108,11 @@ class PostController extends Controller
 	public function actionDelete($id)
 	{
 		$model=$this->loadModel($id);
-		if(Yii::app()->user->id == $model->author_id) {
+		if (Yii::app()->user->id == $model->author_id) {
 			$this->loadModel($id)->delete();
 			$this->redirect('index.php?r=post');
-			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			// if(!isset($_GET['ajax']))
-			// 	$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 		} else {
-			$this->redirect(array('view','id'=>$model->id));
+			throw new CHttpException(403,'Ошибка доступа. Не твоё - не трогай!');
 		}
 	}
 
@@ -139,8 +134,9 @@ class PostController extends Controller
 	{
 		$model=new Post('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Post']))
+		if (isset($_GET['Post'])) {
 			$model->attributes=$_GET['Post'];
+		}
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -168,8 +164,7 @@ class PostController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='post-form')
-		{
+		if (isset($_POST['ajax']) && $_POST['ajax']==='post-form') {
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
